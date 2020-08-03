@@ -86,6 +86,7 @@ public class MemberDao {
 		int result = 0;
 		String sql = "INSERT INTO MEMBER VALUES(?,?,?,?,?,?,?,?,?,SYSDATE)";
 		try {
+			//git잔디심기테스트
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m.getMemberId());
 			pstmt.setString(2, m.getMemberPwd());
@@ -96,7 +97,6 @@ public class MemberDao {
 			pstmt.setString(7, m.getPhone());
 			pstmt.setString(8, m.getAddress());
 			pstmt.setString(9, m.getHobby());
-
 			result = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
