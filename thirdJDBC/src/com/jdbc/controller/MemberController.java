@@ -13,9 +13,6 @@ public class MemberController {
 	
 	//dao에 요청을 하는것이 아니라 service객체에 요청으 하게 됨
 	private MemberService service=new MemberService();//Connection생성,트렌젝션관리
-	
-	
-	
 	public void mainMenu() {
 		new MainView().mainMenu();
 	}
@@ -52,7 +49,7 @@ public class MemberController {
 		Member m=new MainView().deleteMember();
 		int result=service.deleteMember(m);
 		if(result>0) new MainView().printMsg("회원삭제 완료");
-		else new MainView().printMsg("회원삭제 실패");
+		else new MainView().printMsg("회원삭제 실패함");
 		
 	}
 
