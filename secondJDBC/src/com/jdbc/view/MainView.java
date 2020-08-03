@@ -118,10 +118,10 @@ public class MainView {
 		m.setEmail(sc.nextLine());
 		System.out.print("휴대폰 번호 : ");
 		m.setPhone(sc.nextLine());
-		System.out.print("취미 (, 으로 구분): ");
-		m.setHobby(sc.nextLine());
 		System.out.print("주소 : ");
 		m.setAddress(sc.nextLine());
+		System.out.print("취미 (, 으로 구분): ");
+		m.setHobby(sc.nextLine());
 		return m;
 	}
 	public void printMsg(String msg) {
