@@ -55,4 +55,9 @@ public class MemberController {
 			new MainView().printMsg(result>0?"업데이트성공":"업데이트실패");
 		}
 	}
+	public void deleteMember() {
+		Member delmember=new MainView().deleteMember();
+		int result=dao.deleteMember(delmember);
+		new MainView().printMsg(result>0?"삭제성공":"삭제실패");
+	}
 }

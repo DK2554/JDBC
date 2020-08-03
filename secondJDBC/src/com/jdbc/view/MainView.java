@@ -30,7 +30,7 @@ public class MainView {
 			case 3:controller.searchMemberId();break;
 			case 4:controller.insertMember();break;
 			case 5:controller.updateMember();break;
-			case 6:System.out.println("개발중....");break;
+			case 6:controller.deleteMember();break;
 			case 0:System.out.println("프로그램을 종료합니다");return;
 			}
 			
@@ -92,6 +92,13 @@ public class MainView {
 		m.setEmail(sc.nextLine());
 		return m;
 		
+	}
+	public Member deleteMember() {
+		Member m=new Member();
+		System.out.println("==회원 삭제==");
+		System.out.print("삭제 할 회원 아이디: ");
+		m.setMemberId(sc.nextLine());
+		return m;
 	}
 	public Member insertMember() {
 		Member m=new Member();
