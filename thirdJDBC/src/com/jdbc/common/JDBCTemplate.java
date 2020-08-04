@@ -1,23 +1,34 @@
 package com.jdbc.common;
 
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+
+
 
 public class JDBCTemplate {
 	// connection 객체를 만들어주는 기능
 	// statment,preparedstatement,resultset객체 반환 메소드
 	// rollback,commit
 	// 공용으로 사용하는 기능을 구현->static메소드로 구현을 함.
+	
+	//DB에 접속에 필요한 정보 및 sql구문을 외부파일에 저장하고 관리!!
+	//Properties객체를 이용해서 파일을 생성및 불러옴.
+	
 
 	// Connection생성해서 반환해주는 메소드 작성
 	public static Connection getConnection() {
 		Connection con = null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "student", "student");
+			//Properties객체로DriverManager properties파일에 있는 이용
+			Properties driver=new Properties();
+			driver.load(new FileReader("resource/DriverManager.properties"));
+			Class.forName(driver.getProperty("driver"));
+			con = DriverManager.getConnection(driver.getProperty("url"),driver.getProperty("user"),driver.getProperty("pw"));
 			System.out.println("드라이버 접속");
 			// 트렌젹션에 대한 옵션 설정
 			con.setAutoCommit(false);// 개발자가 트렌젝션 컨트롤하기 위해서..설정

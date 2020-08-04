@@ -59,7 +59,7 @@ public class MainView {
 		}
 	}
 
-	public void print(ArrayList<Member> member, String title) {
+	public void print(List<Member> member, String title) {
 		System.out.println("==" + title + "으로 조회결과==");
 		for (Member mm : member) {
 			System.out.println(mm);
@@ -71,8 +71,8 @@ public class MainView {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("===조회할 " + title + "입력 ==");
 		System.out.print(title + " : ");
-		String text = sc.nextLine();
-		return text;
+		//어차피 리턴값은 String으로 입력받기 때문에 
+		return sc.nextLine();
 	}
 	public Member deleteMember() {
 		Scanner sc=new Scanner(System.in);
@@ -91,11 +91,13 @@ public class MainView {
 		m.setMemberId(sc.nextLine());
 		System.out.print("변경할 이름: ");
 		m.setMemberName(sc.nextLine());
+		System.out.print("변경할 나이 : ");
+		m.setAge(sc.nextInt());
+		sc.nextLine();
 		System.out.print("변경할 전화번호 : ");
 		m.setPhone(sc.nextLine());
 		System.out.print("변경할 이메일 : ");
 		m.setEmail(sc.nextLine());
-		
 		return m;
 	}
 

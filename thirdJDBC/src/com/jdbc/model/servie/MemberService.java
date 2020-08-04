@@ -28,9 +28,9 @@ public class MemberService {
 		return list;
 	}
 
-	public ArrayList<Member> searchMemberName(String name) {
+	public List<Member> searchMemberName(String name) {
 		Connection con = getConnection();
-		ArrayList<Member> m = dao.searchMemberName(con, name);
+		List<Member> m = dao.searchMemberName(con, name);
 		close(con);
 		return m;
 
@@ -43,12 +43,13 @@ public class MemberService {
 			commit(con);
 		else
 			rollback(con);
+		close(con);
 		return result;
 	}
 
-	public ArrayList<Member> searchMEmberId(String userId) {
+	public List<Member> searchMEmberId(String userId) {
 		Connection con=getConnection();
-		ArrayList<Member>mm=dao.searchMemberId(con,userId);
+		List<Member>mm=dao.searchMemberId(con,userId);
 		close(con);
 		return mm;
 	}
@@ -58,7 +59,7 @@ public class MemberService {
 		int result=dao.updateMeber(con,m);
 		if(result>0) commit(con);
 		else rollback(con);
-		
+		close(con);
 		return result;
 		
 	}
@@ -68,6 +69,7 @@ public class MemberService {
 		int result=dao.deleteMember(con,m);
 		if(result>0) commit(con);
 		else rollback(con);
+		close(con);
 		return result;
 	}
 
