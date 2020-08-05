@@ -20,7 +20,7 @@ public class ConnectionPool {
 			Properties driver = new Properties();
 			driver.load(new FileReader("resource/DriverManager.properties"));
 			Class.forName(driver.getProperty("driver"));
-			con = DriverManager.getConnection(driver.getProperty("url"));
+			con = DriverManager.getConnection(driver.getProperty("url"),driver.getProperty("user"),driver.getProperty("pw"));
 			System.out.println("드라이버 접속 성공");
 			con.setAutoCommit(false);// 개발자 트렌젹션을 컨트롤
 
@@ -60,5 +60,23 @@ public class ConnectionPool {
 			e.printStackTrace();
 		}
 	}
-
+	public static void commit(Connection con) {
+		try {
+			if(con!=null&&!con.isClosed()) {
+				con.commit();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void rollback(Connection con) {
+		try {
+			if(con!=null&&!con.isClosed())
+			{
+				con.rollback();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
