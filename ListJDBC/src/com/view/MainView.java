@@ -34,7 +34,7 @@ public class MainView {
 	}
 
 	public void board() {
-		while(true) {
+		while (true) {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("1.게시판전체검색");
 			System.out.println("2.게시물등록");
@@ -53,6 +53,13 @@ public class MainView {
 				break;
 			case 3:
 				controller.searchboardwriter();
+				break;
+			case 4:
+				controller.searchboardtitle();
+				break;
+			case 5:
+				controller.updateboard();
+				break;
 			case 6:
 				controller.delteboard();
 				break;
@@ -62,7 +69,7 @@ public class MainView {
 			}
 
 		}
-	
+
 	}
 
 	public void member() {
@@ -114,8 +121,8 @@ public class MainView {
 	}
 
 	public Board insertboard() {
-		Scanner sc=new Scanner(System.in);
-		Board bo=new Board();
+		Scanner sc = new Scanner(System.in);
+		Board bo = new Board();
 		System.out.println("===게시물 등록하기====");
 		System.out.print("게시물 종류('공지','일반','비밀') : ");
 		bo.setDiv(sc.nextLine());
@@ -195,22 +202,37 @@ public class MainView {
 	}
 
 	public Board deleteboard() {
-		Scanner sc=new Scanner(System.in);
-		Board bo=new Board();
+		Scanner sc = new Scanner(System.in);
+		Board bo = new Board();
 		System.out.println("=====게시물삭제 ======");
 		System.out.println("삭제할 게시물의 작성자를 입력해주세요");
 		System.out.print("작성자 : ");
 		bo.setWriter(sc.nextLine());
 		return bo;
 
-		
 	}
 
 	public String inputTitle(String string) {
-		Scanner sc=new Scanner(System.in);
-		System.out.println("==="+string+"으로 입력받기=====");
-		System.out.println(string+"을 입력해주세요 : ");
+		Scanner sc = new Scanner(System.in);
+		System.out.println("===" + string + "으로 입력받기=====");
+		System.out.print(string + "을 입력해주세요 : ");
 		return sc.nextLine();
+	}
+
+	public Board updateboard() {
+		Scanner sc = new Scanner(System.in);
+		Board b = new Board();
+		System.out.println("전체게시물 조회");
+		controller.searchboardAll();
+		System.out.println("수정할  게시물 번호를 입력해주세요");
+		System.out.print("입력 : ");
+		b.setBoard_no(sc.nextInt());
+		sc.nextLine();
+		System.out.print("수정할 제목을 입력하세요:");
+		b.setTitle(sc.nextLine());
+		System.out.print("수정할 내용을 입력하세요 : ");
+		b.setComent(sc.nextLine());
+		return b;
 	}
 
 }

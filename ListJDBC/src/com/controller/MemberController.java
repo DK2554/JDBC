@@ -7,6 +7,8 @@ import com.model.vo.Emp;
 import com.service.MemberService;
 import com.view.MainView;
 
+
+
 public class MemberController {
 	private MemberService service = new MemberService();
 
@@ -71,7 +73,24 @@ public class MemberController {
 
 	public void searchboardwriter() {
 		String writer=new MainView().inputTitle("작성자");
-		service.searchwriter(writer);
+		List<Board>list=service.searchwriter(writer);
+		new MainView().printBoard(list);
+		
+	}
+	public void searchboardtitle() {
+		String title=new MainView().inputTitle("제목");
+		List<Board>list=service.searchboardtitle(title);
+		new MainView().printBoard(list);
+		
+		
+	}
+
+	public void updateboard() {
+		Board upno=new MainView().updateboard();
+		int result=service.updateboard(upno);
+		new MainView().printMsg(result > 0 ? "게시물수정  완료" : "게시물수정 실패");
+		
+		
 	}
 
 }

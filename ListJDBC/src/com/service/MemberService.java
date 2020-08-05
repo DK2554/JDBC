@@ -89,9 +89,23 @@ public class MemberService {
 		
 		
 	}
-	public void searchwriter(String writer) {
+	public List<Board> searchwriter(String writer) {
 		Connection con=getConnection();
-		bdao.searchwriter(con,writer);
+		List<Board>list=bdao.searchwriter(con,writer);
+		close(con);
+		return list; 
+	}
+	public List<Board> searchboardtitle(String title) {
+		Connection con=getConnection();
+		List<Board>list=bdao.searchboardtitle(con,title);
+		close(con);
+		return list;
+	}
+	public int updateboard(Board upno) {
+		Connection con=getConnection();
+		int result=bdao.updateboard(con,upno);
+		close(con);
+		return result;
 		
 	}
 
